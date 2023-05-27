@@ -5,7 +5,7 @@ from django.db import models
 
 
 class UserProfileManager(BaseUserManager):
-    """ Manager for user profiles"""
+    """Manager for user profiles"""
 
     def create_user(self, email, name, password=None):
         """
@@ -43,7 +43,8 @@ class UserProfileManager(BaseUserManager):
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
-    """ Database model for users in the system"""
+    """Database model for users in the system"""
+
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -51,8 +52,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     objects = UserProfileManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["name"]
 
     def get_full_name(self):
         """
